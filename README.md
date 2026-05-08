@@ -81,6 +81,7 @@ ros2 topic echo /cmd_vel
 ros2 pkg list | grep ros1_bridge
 ```
 
+
 ### B2无反应
 
 先在ros1终端中发布cmd_vel,检查ros2终端中能否看到cmd_vel话题内容：
