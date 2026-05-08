@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ros1_ros2_bridge</name>
+  <version>0.1.0</version>
+  <description>ROS1 and ROS2 bidirectional bridge launcher based on ros1_bridge dynamic_bridge.</description>
+
+  <maintainer email="zy@example.com">zy</maintainer>
+  <license>MIT</license>
+
+  <!-- 关键修改：将 catkin 改为 ament_cmake -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- 执行依赖保留，这些是 ROS 1 的包，但在 ROS 2 环境中可以通过桥接识别或作为系统依赖 -->
+  <exec_depend>roslaunch</exec_depend>
+  <exec_depend>rostopic</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
