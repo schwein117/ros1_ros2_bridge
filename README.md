@@ -33,15 +33,18 @@ colcon build
 
 ## 使用方法
 
+说明：导航系统在ROS1侧发布 `/cmd_vel`，宇树B2实际通过ROS2话题 `/api/sport/request` 控制运动。因此在启动桥接器前，需要先启动 `b2_cmd_vel_bridge.py`，将速度指令从 `/cmd_vel` 转换为宇树控制请求。
+
 ### 终端1（ros2环境）：启动宇树sdk（步骤略）和桥接器
 
 ```bash
 source /opt/ros/foxy/setup.bash
 source ~/ros1_ros2_bridge_ws/install/setup.bash
 
-#话题转换
+# 先启动话题转换（/cmd_vel -> /api/sport/request）
 python3 b2_cmd_vel_bridge.py
 
+# 再启动ROS1/ROS2桥接器
 ros2 launch ros1_ros2_bridge ros1_ros2_bridge.launch.py
 ```
 
@@ -75,7 +78,6 @@ ros2 topic echo /cmd_vel
 
 检查是否安装了ros1_bridge：
 ```bash
-source ~/ros1_bridge_ws/install/setup.bash
 ros2 pkg list | grep ros1_bridge
 ```
 
@@ -93,17 +95,4 @@ source /opt/ros/foxy/setup.bash
 ```bash
 ros2 topic list
 ros2 topic info /cmd_vel
-```
-
----
-
-## 文件结构
-
-```
-ros1_ros2_bridge/
-├── CMakeLists.txt
-├── package.xml
-├── launch/
-│   └── ros1_ros2_bridge.launch.py
-└── README.md
 ```
