@@ -81,17 +81,9 @@ ros2 topic echo /cmd_vel
 ros2 pkg list | grep ros1_bridge
 ```
 
-### 话题未桥接
-
-确保同时激活ROS1和ROS2环境：
-```bash
-source /opt/ros/noetic/setup.bash
-source /opt/ros/foxy/setup.bash
-```
-
 ### B2无反应
 
-检查话题是否正确发布：
+先在ros1终端中发布cmd_vel,检查ros2终端中能否看到cmd_vel话题内容：
 ```bash
 ros2 topic list
 ros2 topic info /cmd_vel
